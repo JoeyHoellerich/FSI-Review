@@ -41,6 +41,7 @@ let dogButtonClick = () => {
     currentVotes++;
     document.querySelector("#doggo-votes").innerText = currentVotes;
     localStorage.setItem('doggo-votes', currentVotes);
+    favCheck();
 }
 
 let catButtonClick = () => {
@@ -48,6 +49,7 @@ let catButtonClick = () => {
     currentVotes++;
     document.querySelector("#catto-votes").innerText = currentVotes;
     localStorage.setItem('catto-votes', currentVotes);
+    favCheck();
 }
 
 let fishButtonClick = () => {
@@ -55,6 +57,32 @@ let fishButtonClick = () => {
     currentVotes++;
     document.querySelector("#fish-votes").innerText = currentVotes;
     localStorage.setItem('fish-votes', currentVotes);
+    favCheck();
+}
+
+let favCheck = () => {
+    let dogCheck = parseInt(localStorage.getItem("doggo-votes"));
+    console.log(dogCheck);
+    let catCheck = parseInt(localStorage.getItem("catto-votes"));
+    let fishCheck = parseInt(localStorage.getItem("fish-votes"));
+
+    if (dogCheck > catCheck && dogCheck > fishCheck){
+        dogColumn.classList.add("fav");
+        catColumn.classList.remove("fav");
+        fishColumn.classList.remove("fav");
+    }
+
+    if (catCheck > dogCheck && catCheck > fishCheck){
+        dogColumn.classList.remove("fav");
+        catColumn.classList.add("fav");
+        fishColumn.classList.remove("fav");
+    }
+
+    if (fishCheck > catCheck && fishCheck > dogCheck){
+        dogColumn.classList.remove("fav");
+        catColumn.classList.remove("fav");
+        fishColumn.classList.add("fav");
+    }
 }
 
 
